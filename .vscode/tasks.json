@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "func",
+      "label": "func: host start",
+      "command": "host start",
+      "problemMatcher": "$func-python-watch",
+      "isBackground": true
+    },
+    {
+      "type": "shell",
+      "command": "pipenv requirements | pipenv run pip install -r /dev/stdin --target .python_packages",
+      "label": "Build deps"
+    }
+  ]
+}
