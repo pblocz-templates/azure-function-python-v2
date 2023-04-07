@@ -12,11 +12,13 @@
     "python.testing.pytestEnabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.mypyEnabled": true,
-	"mypy-type-checker.args": [
+    "python.linting.mypyArgs": [
         "--install-types",
-		"--follow-imports=silent",
-		"--ignore-missing-imports",
-		"--no-pretty",
-        "--config-file", "tox.ini",
-	],
+        "--non-interactive",
+        "--follow-imports=silent",
+        "--ignore-missing-imports",
+        "--show-column-numbers",
+        "--no-pretty",
+        "--config-file", "tox.ini"
+    ],
 }
