@@ -1,4 +1,4 @@
-import subprocess as sp
+import subprocess as sp  # nosec B404
 import sys
 from typing import Iterable, cast
 
@@ -8,7 +8,7 @@ args = sys.argv[2:]
 logfile = open(output, "wb")  # noqa: WPS515
 cmd = ["vulture"] + args
 
-with sp.Popen(
+with sp.Popen(  # nosec: B603
     cmd, stdout=sp.PIPE, stderr=sp.STDOUT, bufsize=1, universal_newlines=True
 ) as p:
     with open(output, "w") as buf:
