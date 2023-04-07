@@ -7,6 +7,22 @@ name = "pypi"
 azure-functions = "*"
 
 [dev-packages]
+tox = "*"
+flake8 = "*"
+flake8-builtins = "*"
+flake8-eradicate = "*"
+flake8-quotes = "*"
+flake8-isort = "*"
+flake8-junit-report = "*"
+pep8-naming = "*"
+radon = "*"
+wps-light = "*"
+mypy = "*"
+pytest = "*"
+pytest-datadir = "*"
+pytest-mock = "*"
+pytest-socket = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.9"
