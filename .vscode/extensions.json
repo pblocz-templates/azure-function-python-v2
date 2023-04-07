@@ -1,6 +1,9 @@
 {
   "recommendations": [
     "ms-azuretools.vscode-azurefunctions",
-    "ms-python.python"
+    "ms-python.python",
+    "ms-python.flake8",
+    "ms-python.black-formatter",
+    "ms-python.mypy-type-checker"
   ]
 }
