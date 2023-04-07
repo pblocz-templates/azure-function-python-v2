@@ -64,5 +64,5 @@ def local_settings_environ_setup() -> None:
     settings = json.loads(
         (Path(__file__).parent.parent / "local.settings.json").read_text()
     )
-    for key, value in settings["Values"].items():
-        os.environ[key] = value
+    for key, setting_value in settings["Values"].items():
+        os.environ[key] = setting_value

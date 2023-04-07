@@ -3,7 +3,9 @@ from typing import Callable
 import pytest
 from azure import functions as func
 
-from functions.function_helloworld import test_function as trigger_function  # noqa F401
+from functions.function_helloworld import (  # noqa: F401
+    test_function as trigger_function,
+)
 
 # ----
 # Example of test building the test on the call
@@ -36,9 +38,7 @@ def template_call(
 ) -> Callable[..., func.HttpResponse]:
     def wrapper(**kwargs: str) -> func.HttpResponse:
         req = make_req(params=kwargs)
-        outresp = func_call(req)
-
-        return outresp
+        return func_call(req)
 
     return wrapper
 
