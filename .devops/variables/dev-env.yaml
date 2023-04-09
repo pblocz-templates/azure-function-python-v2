@@ -1,9 +1,9 @@
 variables:
 -   name: environment
-    value: poc
+    value: dev
 
 -   name: azureSubscription
-    value: PPT Poc RSG
+    value: dev-service-connection
 
 -   name: faName
     value: function-name-fa
