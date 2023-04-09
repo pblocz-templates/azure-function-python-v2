@@ -11,3 +11,4 @@ variables:
 -   name: faSettings
     value: >-
         -sample_key sample-value
+        -AzureWebJobsFeatureFlags EnableWorkerIndexing
