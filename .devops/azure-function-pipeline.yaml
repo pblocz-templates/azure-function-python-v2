@@ -44,7 +44,7 @@ stages:
         -   bash: |
                 cat > ${{variables.functionWorkingDirectory}}/local.settings.json << EOF
                     {"IsEncrypted": false, "Values": {
-                        "sample-key": "sample-value"
+                        "sample_key": "sample-value"
                     }}
                 EOF
                 cat ${{variables.functionWorkingDirectory}}/local.settings.json
