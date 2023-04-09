@@ -4,6 +4,8 @@
     "ms-python.python",
     "ms-python.flake8",
     "ms-python.black-formatter",
-    "ms-python.mypy-type-checker"
+    "ms-python.mypy-type-checker",
+    "stevejpurves.cucumber",
+    "christian-kohler.path-intellisense",
   ]
 }
