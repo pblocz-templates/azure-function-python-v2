@@ -44,9 +44,11 @@ stages:
         -   bash: |
                 cat > ${{variables.functionWorkingDirectory}}/local.settings.json << EOF
                     {"IsEncrypted": false, "Values": {
-                        "sample-key": "sample-value",
+                        "sample-key": "sample-value"
                     }}
                 EOF
+                cat ${{variables.functionWorkingDirectory}}/local.settings.json
+            displayName: Testing local.settings.json
         -   template: templates/azure-functions/test-func.yaml
             parameters:
                 pythonVersion: ${{ variables.pythonVersion }}
