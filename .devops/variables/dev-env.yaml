@@ -1,0 +1,14 @@
+variables:
+-   name: environment
+    value: dev
+
+-   name: azureSubscription
+    value: dev-service-connection
+
+-   name: faName
+    value: function-name-fa
+
+-   name: faSettings
+    value: >-
+        -sample_key sample-value
+        -AzureWebJobsFeatureFlags EnableWorkerIndexing

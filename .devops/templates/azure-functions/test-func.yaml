@@ -1,0 +1,40 @@
+parameters:
+  # Working Directory
+-   name: workingDirectory
+    type: string
+
+  # Version of python for the function
+-   name: pythonVersion
+    type: string
+
+steps:
+-   task: UsePythonVersion@0
+    displayName: Use Python ${{ parameters.pythonVersion }}
+    inputs:
+        versionSpec: ${{ parameters.pythonVersion }}
+        architecture: x64
+
+-   bash: |
+        pip install tox
+        tox
+    displayName: Install and run tox
+    workingDirectory: ${{ parameters.workingDirectory }}
+
+# Publish tests results from pytest to pipeline
+-   task: PublishTestResults@2
+    displayName: Publish test results
+    condition: succeededOrFailed()
+    inputs:
+        testResultsFormat: JUnit
+        testResultsFiles: '**/test-*.xml'
+        searchFolder: ${{ parameters.workingDirectory }}/tests/results
+        testRunTitle: Tox tests
+
+# Publish coverage results from pytest to pipeline
+-   task: PublishCodeCoverageResults@1
+    displayName: Publish coverage results
+    condition: succeededOrFailed()
+    inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: ${{ parameters.workingDirectory }}/tests/results/coverage.xml
+        reportDirectory: ${{ parameters.workingDirectory }}/tests/results/htmlcov
