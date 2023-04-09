@@ -1,0 +1,41 @@
+parameters:
+-   name: artifactName
+    default: _funcapp
+-   name: dotnetVersion
+    default: 6.0.x
+-   name: path
+-   name: buildId
+
+steps:
+
+-   task: UseDotNet@2
+    displayName: Use .NET 6 Core sdk
+    inputs:
+        packageType: sdk
+        version: ${{ parameters.dotnetVersion }}
+        includePreviewVersions: true
+
+-   task: DotNetCoreCLI@2
+    displayName: dotnet restore
+    inputs:
+        command: restore
+        projects: ${{ parameters.path }}/*.csproj
+
+-   task: DotNetCoreCLI@2
+    displayName: dotnet build
+    inputs:
+        projects: ${{ parameters.path }}/*.csproj
+        arguments: --no-restore
+
+-   task: DotNetCoreCLI@2
+    displayName: dotnet publish
+    inputs:
+        command: publish
+        publishWebProjects: false
+        projects: ${{ parameters.path }}/*.csproj
+        arguments: ' -o $(Build.ArtifactStagingDirectory)/${{ parameters.buildId }} --no-build'
+        zipAfterPublish: true
+        modifyOutputPath: false
+
+-   publish: $(Build.ArtifactStagingDirectory)/${{ parameters.buildId }}
+    artifact: ${{ parameters.artifactName }}

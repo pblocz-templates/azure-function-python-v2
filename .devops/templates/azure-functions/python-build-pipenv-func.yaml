@@ -1,0 +1,38 @@
+parameters:
+-   name: pyhtonVersion
+    default: '3.9'
+-   name: path
+    default: .
+-   name: artifactName
+    default: _funcapp
+-   name: buildId
+
+
+steps:
+
+-   checkout: self
+    clean: true
+    persistCredentials: true
+    path: repo
+
+-   task: UsePythonVersion@0
+    displayName: Use Python ${{ parameters.pyhtonVersion }}
+    inputs:
+        versionSpec: ${{ parameters.pyhtonVersion }}
+        architecture: x64
+
+-   bash: pipenv requirements | pipenv run pip install -r /dev/stdin --target ${{ parameters.path }}/.python_packages/lib/site-packages
+    displayName: Install libraries and build extensions
+    workingDirectory: $(Pipeline.Workspace)/repo/
+
+-   task: ArchiveFiles@2
+    displayName: Archive files
+    inputs:
+        rootFolderOrFile: $(Pipeline.Workspace)/repo/${{ parameters.path }}
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/${{ parameters.buildId }}.zip
+        replaceExistingArchive: true
+
+-   publish: $(Build.ArtifactStagingDirectory)/
+    artifact: ${{ parameters.artifactName }}

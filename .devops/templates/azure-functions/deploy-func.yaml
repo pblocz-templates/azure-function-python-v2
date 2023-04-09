@@ -1,0 +1,51 @@
+parameters:
+-   name: functionAppName
+    type: string
+
+-   name: BuildId
+    type: string
+
+-   name: environment
+    type: string
+
+-   name: serviceConnection
+    type: string
+
+-   name: appSettings
+    type: string
+
+-   name: artifactName
+    type: string
+
+-   name: dependsOn
+    type: string
+    default:
+
+jobs:
+-   deployment: Deploy
+    ${{ if parameters.dependsOn }}:
+        dependsOn: ${{ parameters.dependsOn }}
+    displayName: Deploy Platform
+    pool:
+        vmImage: $(vmImageName)
+    environment: ${{ parameters.environment }}
+    strategy:
+        runOnce:
+            deploy:
+                steps:
+
+                -   task: DownloadBuildArtifacts@0
+                    inputs:
+                        buildType: current
+                        downloadType: single
+                        artifactName: ${{parameters.artifactName}}
+                        downloadPath: $(System.ArtifactsDirectory)
+
+                -   task: AzureFunctionApp@1
+                    displayName: Azure functions app deploy
+                    inputs:
+                        azureSubscription: ${{ parameters.serviceConnection }}
+                        appType: functionAppLinux
+                        appName: ${{ parameters.functionAppName }}
+                        package: $(Pipeline.Workspace)/${{parameters.artifactName}}/${{ parameters.BuildId }}.zip
+                        appSettings: ${{ parameters.appSettings }}

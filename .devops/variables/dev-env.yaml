@@ -1,0 +1,13 @@
+variables:
+-   name: environment
+    value: poc
+
+-   name: azureSubscription
+    value: PPT Poc RSG
+
+-   name: faName
+    value: function-name-fa
+
+-   name: faSettings
+    value: >-
+        -sample-key sample-value

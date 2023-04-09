@@ -1,0 +1,37 @@
+parameters:
+-   name: buildId
+-   name: runtime
+-   name: artifactName
+    default: _funcapp
+-   name: path
+    default: .
+
+# optional parameters for dotnet
+-   name: dotnetVersion
+    default: 6.0.x
+
+# optional parameters for python
+-   name: pyhtonVersion
+    default: '3.9'
+
+steps:
+-   ${{ if eq(parameters.runtime, 'python') }}:
+    -   template: python-build-func.yaml
+        parameters:
+            buildId: ${{ parameters.buildId }}
+            path: ${{ parameters.path }}
+            artifactName: ${{ parameters.artifactName }}
+
+-   ${{ if eq(parameters.runtime, 'python-pipenv') }}:
+    -   template: python-build-pipenv-func.yaml
+        parameters:
+            buildId: ${{ parameters.buildId }}
+            path: ${{ parameters.path }}
+            artifactName: ${{ parameters.artifactName }}
+
+-   ${{ if eq(parameters.runtime, 'dotnet') }}:
+    -   template: dotnet-build-func.yaml
+        parameters:
+            buildId: ${{ parameters.buildId }}
+            path: ${{ parameters.path }}
+            artifactName: ${{ parameters.artifactName }}
