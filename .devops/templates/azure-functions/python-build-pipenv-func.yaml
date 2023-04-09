@@ -21,7 +21,9 @@ steps:
         versionSpec: ${{ parameters.pyhtonVersion }}
         architecture: x64
 
--   bash: pipenv requirements | pipenv run pip install -r /dev/stdin --target ${{ parameters.path }}/.python_packages/lib/site-packages
+-   bash: |
+        pip install pipenv
+        pipenv requirements | pipenv run pip install -r /dev/stdin --target ${{ parameters.path }}/.python_packages/lib/site-packages
     displayName: Install libraries and build extensions
     workingDirectory: $(Pipeline.Workspace)/repo/
 
