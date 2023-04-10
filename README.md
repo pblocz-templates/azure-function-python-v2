@@ -1,5 +1,21 @@
 # Azure Function Python v2 Blueprint Template
 
+<!-- vscode-markdown-toc -->
+* [Features](#Features)
+* [Requirements](#Requirements)
+* [Getting Started](#GettingStarted)
+* [Pre-commit](#Pre-commit)
+* [Pytest, Unit Testing, and BDD](#PytestUnitTestingandBDD)
+* [Tox](#Tox)
+* [DevOps Pipeline](#DevOpsPipeline)
+* [License](#License)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 This repository contains a template for creating an Azure Function using Python v2 and blueprints.
 
 ## Features
@@ -27,7 +43,7 @@ This repository contains a template for creating an Azure Function using Python 
 2.  Open the repository in Visual Studio Code
 3.  When prompted, reopen the repository in a Devcontainer
 4.  In the Devcontainer terminal, run the command `pipenv install --dev` to install the required dependencies
-5.  Start Pipenv shell `pipenv shell` or run commands with `pipenv run` 
+5.  Start Pipenv shell `pipenv shell` or run commands with `pipenv run`
 6.  To run the function locally, run the command `func start`
 7.  To run the unit tests and BDD tests, run the command `pytest` or `tox -e pytest`
 8.  To run the linter and static analysis, as well as tests, run the command `tox`
@@ -48,7 +64,7 @@ This template includes the [pytest](https://pytest.org/) testing framework, whic
 
 Unit tests can be written in the `tests/unit_tests` directory and BDD tests can be written in the `tests/bdd` directory. BDD tests use the [pytest-bdd](https://pypi.org/project/pytest-bdd/) plugin and are written in the Gherkin language.
 
-To run both tests, use the command `pytest`. To select which tests to run, use `pytest <folder>`. 
+To run both tests, use the command `pytest`. To select which tests to run, use `pytest <folder>`.
 
 Both unit tests and BDD tests are automatically run in the DevOps pipeline's build stage, ensuring that any changes to the code do not introduce regressions or unexpected behavior.
 
@@ -81,4 +97,3 @@ The pipeline is triggered on changes to the `main` branch.
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
-
